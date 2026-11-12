@@ -235,7 +235,7 @@ function Hero() {
 
   return (
     <section
-      className="relative isolate h-[29rem] overflow-hidden rounded-[2rem] bg-[#3A1410] text-[#FFF6EA] sm:h-[32rem] sm:rounded-[2.5rem]"
+      className="relative isolate h-116 overflow-hidden rounded-4xl bg-[#3A1410] text-[#FFF6EA] sm:h-128 sm:rounded-[2.5rem]"
       role="region"
       aria-roledescription="carousel"
       aria-label="Featured collections"
