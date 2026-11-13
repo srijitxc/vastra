@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { API_BASE_URL } from '../lib/apiConfig'
 import { GroupCartContext } from './groupCartStore'
 
 const STORAGE_KEY = 'vastra:active-group'
-const API_BASE_URL = import.meta.env.VITE_GROUP_CART_API_URL || '/api'
 
 function readActiveGroup() {
   try {
@@ -36,7 +36,7 @@ async function request(path, options) {
 
   if (!response.ok) {
     if (response.status === 502 || response.status === 503) {
-      throw new Error('Group cart API is offline. In a separate terminal run: Set-Location D:\\2\\Ecorweb\\backend; npm run dev')
+      throw new Error('Group cart API is offline. Please verify the backend API is running.')
     }
     throw new Error(body.error || `The group cart request failed (HTTP ${response.status}).`)
   }

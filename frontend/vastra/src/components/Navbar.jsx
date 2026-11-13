@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { useCart } from '../context/CartContext'
+import { useCart } from '../context/useCart'
 import { useAuth } from '../context/useAuth'
 import AccountAvatar from './AccountAvatar'
 
@@ -105,9 +105,11 @@ export default function Navbar() {
   }
 
   // Close the menu after navigating
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(location.pathname)
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname)
     setOpen(false)
-  }, [location.pathname])
+  }
 
   // Escape closes the menu
   useEffect(() => {

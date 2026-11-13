@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useGroupCart } from '../context/useGroupCart'
-import { useCatalog } from '../context/CatalogContext'
+import { useCatalog } from '../context/useCatalog'
 
 const currency = new Intl.NumberFormat('en-IN', {
   style: 'currency',

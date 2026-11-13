@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_GROUP_CART_API_URL || '/api'
+import { API_BASE_URL } from './apiConfig'
 const ADMIN_TOKEN_KEY = 'vastra:admin-token'
 
 export function hasAdminSession() {

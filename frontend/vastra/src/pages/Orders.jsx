@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { API_BASE_URL } from '../lib/apiConfig'
 import { readTrackedOrders, rememberTrackedOrder } from '../lib/orderTracking'
-
-const API_BASE_URL = import.meta.env.VITE_GROUP_CART_API_URL || '/api'
 
 const currency = new Intl.NumberFormat('en-IN', {
   style: 'currency',

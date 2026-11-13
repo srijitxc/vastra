@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useCart } from '../context/CartContext'
+import { useCart } from '../context/useCart'
+import { API_BASE_URL } from '../lib/apiConfig'
 import { rememberTrackedOrder } from '../lib/orderTracking'
-
-const API_BASE_URL = import.meta.env.VITE_GROUP_CART_API_URL || '/api'
 
 const currency = new Intl.NumberFormat('en-IN', {
   style: 'currency',

@@ -1,15 +1,14 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { products as baseProducts } from '../data/catalog'
-
-const API_BASE_URL = import.meta.env.VITE_GROUP_CART_API_URL || '/api'
-const CatalogContext = createContext(null)
+import { API_BASE_URL } from '../lib/apiConfig'
+import { CatalogContext } from './catalogStore'
 
 async function fetchManagedCatalog() {
   let response
   try {
     response = await fetch(`${API_BASE_URL}/catalog`)
   } catch {
-    throw new Error('Could not reach the catalog server. In a separate terminal run: Set-Location D:\\2\\Ecorweb\\backend; npm run dev')
+    throw new Error('Could not reach the catalog server. Please verify the backend API is running.')
   }
 
   const responseText = await response.text()
@@ -24,7 +23,7 @@ async function fetchManagedCatalog() {
 
   if (!response.ok) {
     if (response.status === 502 || response.status === 503) {
-      throw new Error('Catalog API is offline. In a separate terminal run: Set-Location D:\\2\\Ecorweb\\backend; npm run dev')
+      throw new Error('Catalog API is offline. Please verify the backend API is running.')
     }
     throw new Error(body.error || `Catalog could not be loaded (HTTP ${response.status}).`)
   }
@@ -86,10 +85,4 @@ export function CatalogProvider({ children }) {
 
   const value = useMemo(() => ({ products: catalog, error, refresh }), [catalog, error, refresh])
   return <CatalogContext.Provider value={value}>{children}</CatalogContext.Provider>
-}
-
-export function useCatalog() {
-  const context = useContext(CatalogContext)
-  if (!context) throw new Error('useCatalog must be used within a CatalogProvider')
-  return context
 }

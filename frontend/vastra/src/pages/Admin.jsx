@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useCatalog } from '../context/CatalogContext'
+import { useCatalog } from '../context/useCatalog'
 import { adminLogin, adminRequest, clearAdminSession, hasAdminSession } from '../lib/adminApi'
 
 const currency = new Intl.NumberFormat('en-IN', {
