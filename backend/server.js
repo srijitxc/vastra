@@ -85,15 +85,18 @@ function send(response, status, payload) {
 }
 
 function isAllowedOrigin(origin) {
-  if (allowedOrigins.has(origin)) return true
-  if (process.env.NODE_ENV === 'production') return false
+  if (!origin) return true
+  if (allowedOrigins.has(origin) || allowedOrigins.has('*')) return true
 
   try {
     const hostname = new URL(origin).hostname
-    return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]'
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '[::1]') return true
+    if (hostname.endsWith('.vercel.app')) return true
   } catch {
     return false
   }
+
+  return false
 }
 
 async function persistStore() {
