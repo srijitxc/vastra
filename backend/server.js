@@ -439,8 +439,8 @@ async function handle(request, response) {
   }
 
   const url = new URL(request.url, `http://${request.headers.host || 'localhost'}`)
-  if (request.method === 'GET' && url.pathname === '/api/health') {
-    send(response, 200, { status: 'ok' })
+  if (request.method === 'GET' && (url.pathname === '/' || url.pathname === '/api' || url.pathname === '/api/health')) {
+    send(response, 200, { status: 'ok', service: 'Vastra API' })
     return
   }
 
